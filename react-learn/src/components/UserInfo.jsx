@@ -1,9 +1,9 @@
-function UserInfo(){
+function UserInfo({name, job}){
     return (
         <div className="user-info">
-            <h2>Affan Dzaki Abrar</h2>
-            <p>FullStack Webdev</p>
-            <p className="location">Malang,Indo</p>
+            <h2>{name}</h2>
+            <p>{job}</p>
+            {/* <p className="location">Malang,Indo</p> */}
         </div>
     );
 }

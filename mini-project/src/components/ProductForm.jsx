@@ -1,4 +1,4 @@
-function ProductForm({form, setForm, onSubmit}){
+function ProductForm({form, setForm, onSubmit, editingId}){
     return(
         <form onSubmit={onSubmit}>
         <h2>Tambah Produk</h2>
@@ -32,7 +32,7 @@ function ProductForm({form, setForm, onSubmit}){
 
         </select>
 
-        <button type="submit">Tambah Produk</button>
+        <button type="submit">{editingId !== null ? "simpan Perubahan":"tambah produk"}</button>
       </form>
     )
 }

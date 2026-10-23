@@ -17,6 +17,7 @@ function App() {
     stock: "",
     category: "Accessories",
   });
+  const [editingId, setEditingId] = useState(null);
 
   // function handle
   function handleSubmit(event) {
@@ -26,15 +27,31 @@ function App() {
       alert("Semua wajib diisi");
       return;
     }
-    const newProduct = {
-      id: Date.now(),
-      name: form.name.trim(),
-      price: Number(form.price),
-      stock: Number(form.stock),
-      category: form.category,
-    };
 
-    setProducts([...products, newProduct]);
+    if(editingId !== null){
+      const updateProducts = products.map((product) => 
+        product.id === editingId ? {
+            ...product,
+            name: form.name.trim(),
+            price: Number(form.price),
+            stock: Number(form.stock),
+            category: form.category
+        } : product
+      
+      );
+      
+      setProducts(updateProducts)
+      setEditingId(null)
+    } else {
+          const newProduct = {
+            id: Date.now(),
+            name: form.name.trim(),
+            price: Number(form.price),
+            stock: Number(form.stock),
+            category: form.category
+          };
+          setProducts((prev) => [...prev, newProduct])
+      }
 
     setForm({
       name: "",
@@ -42,6 +59,22 @@ function App() {
       stock: "",
       category: "Accessories",
     });
+  }
+
+  function handleDelete(id) {
+    const updateProduct = products.filter((product) => product.id !== id);
+    setProducts(updateProduct);
+  }
+
+  function handleEdit(product){
+    setEditingId(product.id)
+    setForm({
+     name: product.name,
+     price: product.price,
+     stock: product.stock,
+     category: product.category
+    
+    })
   }
 
   const filteredProducts = products.filter((data) => {
@@ -66,9 +99,9 @@ function App() {
         setFilter={setFilter}
       />
 
-      <ProductForm form={form} setForm={setForm} onSubmit={handleSubmit} />
+      <ProductForm form={form} setForm={setForm} onSubmit={handleSubmit} editingId={editingId} />
 
-      <ProductList products={filteredProducts} />
+      <ProductList products={filteredProducts} onDelete={handleDelete} onEdit={handleEdit} />
     </>
   );
 }

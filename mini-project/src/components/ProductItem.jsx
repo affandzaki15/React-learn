@@ -12,8 +12,8 @@ function ProductItem({ data, onDelete, onEdit }) {
       <p className="text-sm text-gray-600">Kategori: {data.category}</p>
 
       <span
-        className={`mt-3 inline-block rounded-full px-3 py-1 text-xs font-medium ${
-          data.stock > 0
+        className={`mt-3 inline-block rounded-full px-3 py-1 text-xs font-medium 
+          ${ data.stock > 0
             ? "bg-green-100 text-green-700"
             : "bg-red-100 text-red-700"
         }`}

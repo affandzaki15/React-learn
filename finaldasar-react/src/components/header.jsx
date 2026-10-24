@@ -1,6 +1,6 @@
 function Header() {
   return (
-    <header className="mb-8">
+    <header className="mb-8 text-center">
       <h1 className=" text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
         Product Dashboard
       </h1>

@@ -16,6 +16,8 @@ function TaskForm() {
     { id: 3, title: "Belajar API" },
   ]);
   const [deletingId, setDeletingId] = useState(null);
+  const [editingId, setEditingId] = useState(null);
+  const [editError, setEditError] = useState("")
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -72,6 +74,8 @@ function TaskForm() {
   }
 
   async function handleEdit(id) {
+    setEditingId(id);
+    setEditError("")
     try {
       const response = await axios.patch(
         `https://jsonplaceholder.typicode.com/todos/${id}`,
@@ -90,7 +94,10 @@ function TaskForm() {
 
       console.log("Task berhasil diupdate:", response.data);
     } catch (error) {
-      console.error("Gagal mengupdate task:", error.message);
+      setEditError("Gagal mngupdate task. silahkan coba lagi")
+      console.error(error.message);
+    } finally{
+      setEditingId(null)
     }
   }
 
@@ -143,8 +150,10 @@ function TaskForm() {
         {tasks.map((task) => (
           <li key={task.id}>
             {task.title}
-            <button type="button" onClick={() => handleEdit(task.id)}>
-              Edit
+            <button type="button"
+              disabled={editingId === task.id}
+            onClick={() => handleEdit(task.id)}>
+              {editingId === task.id ? "update..." : "edit"}
             </button>
             <button
               type="button"
@@ -156,6 +165,7 @@ function TaskForm() {
           </li>
         ))}
       </ul>
+      {editError && <p>{editError}</p>}
     </form>
   );
 }

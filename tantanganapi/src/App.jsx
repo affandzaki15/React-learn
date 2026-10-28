@@ -1,4 +1,4 @@
-import TaskGet from "./components/TaskGet"
+import GetTask from "./components/TaskGet"
 
 function App() {
 
@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div>
-        <TaskGet />
+        <GetTask />
       </div>
     </>
   )

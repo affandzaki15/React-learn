@@ -1,15 +1,18 @@
-import TaskForm from "./components/TAskForm"
-
-
+import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
+import TaskDetail from "./pages/TaskDetail";
+import { Routes, Route } from "react-router";
 
 function App() {
- 
   return (
     <main>
-      <h1>Create Task</h1>
-      <TaskForm />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/tasks/1" element={<TaskDetail />} />
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;

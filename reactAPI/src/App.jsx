@@ -1,12 +1,12 @@
-import Users from "./pages/Users";
-import { AddUser } from "./pages/AddUser";
+import CounterDisplay from "./components/CounterDisplay";
+import CounterButtons from "./components/CounterButtons";
 
 function App() {
   return (
-    <main>
-      <AddUser />
-      <Users />
-    </main>
+    <div>
+      <CounterDisplay />
+      <CounterButtons />
+    </div>
   );
 }
 
